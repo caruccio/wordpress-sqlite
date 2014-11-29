@@ -15,7 +15,7 @@ Crie uma conta em http://getupcloud.com e [instale o RHC](https://getup.zendesk.
 
 Crie uma aplicação php-5.4
 
-    rhc app create [NOME] php-5.4 --from-code=https://github.com/getupcloud/wordpress-sqlite
+    rhc app create [NOME] php-5.4 --from-code=https://github.com/caruccio/wordpress-sqlite
 
 Pronto, basta acessar a url e finalizar a instalação:
 
