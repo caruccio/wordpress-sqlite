@@ -1,4 +1,4 @@
-Wordpress no Openshift
+Wordpress + SQLite no Openshift
 ======================
 
 Este repositório git lhe ajuda a configurar e instalar o Wordpress de maneira rápida.
