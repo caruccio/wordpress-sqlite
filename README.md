@@ -1,48 +1,43 @@
-Wordpress on OpenShift
+Wordpress no Openshift
 ======================
 
-This git repository helps you get up and running quickly w/ a Wordpress installation
-on OpenShift.  The backend database is MySQL and the database name is the 
-same as your application name (using getenv('OPENSHIFT_APP_NAME')).  You can name
-your application whatever you want.  However, the name of the database will always
-match the application so you might have to update .openshift/action_hooks/build.
+Este repositório git lhe ajuda a configurar e instalar o Wordpress de maneira rápida.
+O propósito é atendar a necessidade de aplicação não-escaláveis que precisem de performance
+para rodar em gears pequenos (menor que 1GB).
 
+O backend de banco de dados é o SQLite3, utilizado através do plugin [sqlite-integration](https://wordpress.org/plugins/sqlite-integration/).
 
-Running on OpenShift
+Você poderá dar o nome que quiser para sua aplicação, entretanto, o nome da base de dados sempre será correspondente ao nome da aplicação.
+
+Criado a aplicação:
 ----------------------------
 
-Create an account at http://openshift.redhat.com/ and install the client tools (run 'rhc setup' first)
+Crie uma conta em http://getupcloud.com e instale o CLI ( veja aqui: https://getup.zendesk.com/entries/38781627 )
 
-Create a php-5.3 application (you can call your application whatever you want)
+Crie uma aplicação php-5.4 ( o nome fica por sua conta )
 
-    rhc app create wordpress php-5.3 mysql-5.1 --from-code=https://github.com/openshift/wordpress-example
+    rhc app create wordpress php-5.4 --from-code=https://github.com/getupcloud/wordpress-sqlite
 
-That's it, you can now checkout your application at:
+Pronto, basta acessar a url e finalizar a instalação:
 
-    http://wordpress-$yournamespace.rhcloud.com
-    
-You'll be prompted to set an admin password and name your WordPress site the first time you visit this 
-page.  
+    http://wordpress-$yournamespace.getup.io
 
-Note: When you upload plugins and themes, they'll get put into your OpenShift data directory
-on the gear ($OPENSHIFT_DATA_DIR).  If you'd like to check these into source control, download the 
-plugins and themes directories and then check them directly into php/wp-content/themes, php/wp-content/plugins.
+Você precisará inserir o usuário e senha de administração e também dar um nome para seu site Wordpress 
+na primeira vez que acessar a url
 
-Notes
+Nota: Ao instalar plugins e temas, eles serão armazenados no diretório (data) do seu gear, $OPENSHIFT_DATA_DIR.
+Você também pode baixar os temas e plugins diretamente no repositório git e fazer o deploy. Basta copiar os arquivos
+nos diretórios php/wp-content/plugins e php/wp-content/themes.
+
+Notas
 =====
 
 GIT_ROOT/.openshift/action_hooks/deploy:
-    This script is executed with every 'git push'.  Feel free to modify this script
-    to learn how to use it to your advantage.  By default, this script will create
-    the database tables that this example uses.
+	Este script é executado em todo 'git push'. Sinta-se à vontade para modificá-lo. Por padrão este script 
+	cria os links para o diretório uploads e blogs.dir.
 
-    If you need to modify the schema, you could create a file 
-    GIT_ROOT/.openshift/action_hooks/alter.sql and then use
-    GIT_ROOT/.openshift/action_hooks/deploy to execute that script (make sure to
-    back up your application + database w/ 'rhc app snapshot save' first :) )
 
-Security Considerations
+Segurança
 -----------------------
-Consult the WordPress documentation for best practices regarding securing your wordpress installation.  OpenShift 
-automatically generates unique secret keys for your deployment into wp-config.php, but you may feel more
-comfortable following the WordPress documentation directly.
+Verifique a documentação do Wodpress para melhores práticas de segurança. O OpenShift gera automaticamente as chaves
+de secretas no wp-config.php.
