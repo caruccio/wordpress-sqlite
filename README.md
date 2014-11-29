@@ -6,38 +6,17 @@ O propósito é atendar a necessidade de aplicação não-escaláveis que precis
 para rodar em gears pequenos (menor que 1GB).
 
 O backend de banco de dados é o SQLite3, utilizado através do plugin [sqlite-integration](https://wordpress.org/plugins/sqlite-integration/).
+**Alguns plugins não funcionam com este repositório**. Veja aqui a [lista de incompatibilidades](http://dogwood.skr.jp/wordpress/sqlite-integration/#index-plugin-compat) e os [plugins alternativos](http://dogwood.skr.jp/wordpress/sqlite-integration/#index-substitutions).
 
-Você poderá dar o nome que quiser para sua aplicação, entretanto, o nome da base de dados sempre será correspondente ao nome da aplicação.
+Criando a aplicação:
+--------------------
 
-Criado a aplicação:
-----------------------------
+Crie uma conta em http://getupcloud.com e [instale o RHC](https://getup.zendesk.com/entries/38781627)
 
-Crie uma conta em http://getupcloud.com e instale o CLI ( veja aqui: https://getup.zendesk.com/entries/38781627 )
+Crie uma aplicação php-5.4
 
-Crie uma aplicação php-5.4 ( o nome fica por sua conta )
-
-    rhc app create wordpress php-5.4 --from-code=https://github.com/getupcloud/wordpress-sqlite
+    rhc app create [NOME] php-5.4 --from-code=https://github.com/getupcloud/wordpress-sqlite
 
 Pronto, basta acessar a url e finalizar a instalação:
 
-    http://wordpress-$yournamespace.getup.io
-
-Você precisará inserir o usuário e senha de administração e também dar um nome para seu site Wordpress 
-na primeira vez que acessar a url
-
-Nota: Ao instalar plugins e temas, eles serão armazenados no diretório (data) do seu gear, $OPENSHIFT_DATA_DIR.
-Você também pode baixar os temas e plugins diretamente no repositório git e fazer o deploy. Basta copiar os arquivos
-nos diretórios php/wp-content/plugins e php/wp-content/themes.
-
-Notas
-=====
-
-GIT_ROOT/.openshift/action_hooks/deploy:
-	Este script é executado em todo 'git push'. Sinta-se à vontade para modificá-lo. Por padrão este script 
-	cria os links para o diretório uploads e blogs.dir.
-
-
-Segurança
------------------------
-Verifique a documentação do Wodpress para melhores práticas de segurança. O OpenShift gera automaticamente as chaves
-de secretas no wp-config.php.
+    http://[NOME]-$namespace.getup.io
