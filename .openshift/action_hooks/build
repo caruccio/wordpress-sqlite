@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -d ${OPENSHIFT_HAPROXY_DIR} ]; then
+if [ ${OPENSHIFT_HAPROXY_DIR} ]; then
 	echo "Este WordPress não foi projetado para rodar em aplicação escalável."
 	exit 1
 fi
