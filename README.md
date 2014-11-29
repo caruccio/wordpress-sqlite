@@ -2,7 +2,7 @@ Wordpress + SQLite no Openshift
 ======================
 
 Este repositório git lhe ajuda a configurar e instalar o Wordpress de maneira rápida.
-O propósito é atendar a necessidade de aplicação não-escaláveis que precisem de performance
+O propósito é atendar à necessidade de aplicações não-escaláveis que necessitem de performance
 para rodar em gears pequenos (menor que 1GB).
 
 O backend de banco de dados é o SQLite3, utilizado através do plugin [sqlite-integration](https://wordpress.org/plugins/sqlite-integration/).
